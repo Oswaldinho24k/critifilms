@@ -20,8 +20,9 @@ class MovieDetailView(View):
 	def get(self, request, id):
 		template_name = "movies/detail.html"
 		form = CommentForm()
-		comentarios = Comment.objects.all()
+		
 		movie = get_object_or_404(Movie, id=id) #Movie.objects.get(id=id)
+		comentarios = Comment.objects.all().filter(movie=movie)
 		context = {
 			'movie':movie,
 			'form':form,
